@@ -1,0 +1,27 @@
+class Solution(object):
+    def trap(self, height):
+        """
+        :type height: List[int]
+        :rtype: int
+        """
+        if len(height) < 3:
+            return 0
+        i = 0
+        j = len(height) - 1
+        sum = 0
+        lh = height[i]
+        rh = height[j]
+        while i < j:
+            if lh < rh:
+                i += 1
+                if lh > height[i]:
+                    sum += lh - height[i]
+                else:
+                    lh = height[i]
+            else:
+                j -= 1
+                if rh > height[j]:
+                    sum += rh - height[j]
+                else:
+                    rh = height[j]
+        return sum
